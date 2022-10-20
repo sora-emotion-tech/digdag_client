@@ -22,12 +22,12 @@ module Digdag
         path = "/api/#{path}"
         case method
         when :get, :delete
-          request.url(WEBrick::HTTPUtils.escape(path), options)
+          request.url(path, options)
         when :post, :put
           if method == :post
             request.headers['Content-Type'] = 'application/json'
           end
-          request.path = WEBrick::HTTPUtils.escape(path)
+          request.path = path
           request.body = options unless options.empty?
         end
       end
